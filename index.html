@@ -1,0 +1,1247 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nur Dania Sofea — Digital Portfolio | ICT, Web Dev &amp; Creative</title>
+
+  <!-- Google Fonts: Outfit (Clean Geometric Display), Plus Jakarta Sans (Modern UI), JetBrains Mono (Meta/Tags) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind CSS via CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Tailwind Configuration -->
+  <script src="tailwind-config.js"></script>
+
+  <!-- Custom Stylesheet -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body class="bg-pearl-bg text-pearl-ink dark:bg-noir-bg dark:text-noir-ink antialiased selection:bg-wine/20 selection:text-wine dark:selection:bg-wine-rose/25 dark:selection:text-wine-rose min-h-screen flex flex-col overflow-x-hidden relative">
+
+  <!-- ==================== VELVET NOIR AMBIENT AURORA BACKGROUND ==================== -->
+  <div class="aurora-bg" aria-hidden="true">
+    <div class="aurora-orb-1"></div>
+    <div class="aurora-orb-2"></div>
+  </div>
+
+  <!-- ==================== CUSTOM DESKTOP CURSOR FOLLOWER ==================== -->
+  <div id="custom-cursor" aria-hidden="true">
+    <div class="cursor-ring">
+      <span id="cursor-label"></span>
+    </div>
+  </div>
+
+  <!-- ==================== TOP SCROLL PROGRESS BAR ==================== -->
+  <div id="scroll-progress-wrap" class="fixed top-0 left-0 w-full h-[2.5px] z-50 pointer-events-none">
+    <div id="scroll-progress" class="h-full w-0 bg-gradient-to-r from-wine via-champagne to-wine dark:from-wine-rose dark:via-champagne-dark dark:to-wine-rose transition-[width] duration-75"></div>
+  </div>
+
+  <!-- ==================== FLOATING GLASS PILL NAVIGATION BAR ==================== -->
+  <header class="sticky top-0 z-40 pt-3 sm:pt-4 px-3 sm:px-6 pointer-events-none">
+    <div class="max-w-6xl mx-auto pointer-events-auto">
+      <div class="rounded-full backdrop-blur-xl bg-white/80 dark:bg-[#141218]/75 border border-pearl-border/90 dark:border-white/10 shadow-[0_10px_30px_-14px_rgba(23,21,20,0.12)] dark:shadow-[0_12px_36px_-12px_rgba(0,0,0,0.65)] px-3 sm:px-5 h-14 sm:h-16 flex items-center justify-between gap-2 transition-colors duration-300">
+
+        <!-- Crisp Geometric Monogram Wordmark -->
+        <button onclick="navigateTo('home')" class="flex items-center gap-2.5 group focus:outline-none pl-1" aria-label="Return to Home">
+          <span class="w-9 h-9 rounded-full bg-pearl-ink dark:bg-noir-ink text-pearl-bg dark:text-noir-bg font-display font-bold text-sm tracking-tight flex items-center justify-center shadow-sm group-hover:bg-wine dark:group-hover:bg-wine-rose transition-colors">
+            DS
+          </span>
+          <div class="text-left hidden sm:block">
+            <span class="font-display text-lg font-bold tracking-tight block leading-none">
+              Dania Sofea<span class="text-wine dark:text-wine-rose">.</span>
+            </span>
+            <span class="font-mono text-[9px] uppercase tracking-[0.18em] text-pearl-muted dark:text-noir-muted">
+              Digital Portfolio
+            </span>
+          </div>
+        </button>
+
+        <!-- Desktop 7-Page Pill Nav with Animated Sliding Indicator -->
+        <nav id="desktop-nav" class="hidden lg:flex items-center relative bg-pearl-soft/80 dark:bg-white/[0.04] border border-pearl-border/70 dark:border-white/[0.08] rounded-full p-1" aria-label="Primary Navigation">
+          <div id="nav-indicator" class="sliding-pill absolute top-1 bottom-1 rounded-full bg-white dark:bg-white/10 shadow-sm pointer-events-none opacity-0"></div>
+          <button onclick="navigateTo('home')" data-nav="home" class="nav-link relative z-10 px-3 py-1.5 rounded-full text-xs font-medium text-pearl-muted dark:text-noir-muted hover:text-pearl-ink dark:hover:text-white transition-colors">Home</button>
+          <button onclick="navigateTo('about')" data-nav="about" class="nav-link relative z-10 px-3 py-1.5 rounded-full text-xs font-medium text-pearl-muted dark:text-noir-muted hover:text-pearl-ink dark:hover:text-white transition-colors">About</button>
+          <button onclick="navigateTo('experience')" data-nav="experience" class="nav-link relative z-10 px-3 py-1.5 rounded-full text-xs font-medium text-pearl-muted dark:text-noir-muted hover:text-pearl-ink dark:hover:text-white transition-colors">Experience</button>
+          <button onclick="navigateTo('projects')" data-nav="projects" class="nav-link relative z-10 px-3 py-1.5 rounded-full text-xs font-medium text-pearl-muted dark:text-noir-muted hover:text-pearl-ink dark:hover:text-white transition-colors">Projects</button>
+          <button onclick="openCaseStudy(currentCaseStudyId)" data-nav="casestudy" class="nav-link relative z-10 px-3 py-1.5 rounded-full text-xs font-medium text-pearl-muted dark:text-noir-muted hover:text-pearl-ink dark:hover:text-white transition-colors">Case Study</button>
+          <button onclick="navigateTo('gallery')" data-nav="gallery" class="nav-link relative z-10 px-3 py-1.5 rounded-full text-xs font-medium text-pearl-muted dark:text-noir-muted hover:text-pearl-ink dark:hover:text-white transition-colors">Gallery</button>
+          <button onclick="navigateTo('contact')" data-nav="contact" class="nav-link relative z-10 px-3 py-1.5 rounded-full text-xs font-medium text-pearl-muted dark:text-noir-muted hover:text-pearl-ink dark:hover:text-white transition-colors">Contact</button>
+        </nav>
+
+        <!-- Right Controls: Theme Switcher, Resume Button & Mobile Drawer -->
+        <div class="flex items-center gap-2">
+          <!-- Editorial Pearl / Velvet Noir Theme Toggle -->
+          <button id="theme-toggle" onclick="toggleTheme()" class="p-2.5 rounded-full border border-pearl-border dark:border-white/10 bg-pearl-soft/70 dark:bg-white/[0.05] text-pearl-ink dark:text-noir-ink hover:border-wine dark:hover:border-wine-rose hover:text-wine dark:hover:text-wine-rose transition-all" aria-label="Switch Theme" title="Toggle Editorial Pearl / Velvet Noir">
+            <svg class="w-4 h-4 block dark:hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
+            <svg class="w-4 h-4 hidden dark:block" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>
+          </button>
+
+          <!-- Resume Trigger -->
+          <button onclick="openResumeModal()" data-cursor="OPEN" class="hidden sm:inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs font-semibold bg-pearl-ink text-pearl-bg dark:bg-noir-ink dark:text-noir-bg hover:bg-wine dark:hover:bg-wine-rose dark:hover:text-noir-bg transition-all shadow-sm">
+            <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="M10 9H8"/><path d="M16 13H8"/><path d="M16 17H8"/></svg>
+            Resume
+          </button>
+
+          <!-- Mobile Drawer Trigger -->
+          <button id="mobile-menu-btn" onclick="toggleMobileMenu()" class="lg:hidden p-2.5 rounded-full border border-pearl-border dark:border-white/10 bg-pearl-soft/70 dark:bg-white/[0.05] text-pearl-ink dark:text-noir-ink" aria-label="Open Navigation Menu">
+            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" x2="20" y1="7" y2="7"/><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="17" y2="17"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Mobile Floating Menu Drawer -->
+      <div id="mobile-menu" class="hidden lg:hidden mt-2 rounded-3xl backdrop-blur-xl bg-white/95 dark:bg-[#141218]/95 border border-pearl-border dark:border-white/10 p-3 shadow-2xl space-y-1">
+        <button onclick="navigateTo('home'); closeMobileMenu()" data-nav="home" class="mobile-nav-link w-full text-left px-4 py-2.5 rounded-2xl text-sm font-medium text-pearl-muted dark:text-noir-muted block">01 &middot; Home</button>
+        <button onclick="navigateTo('about'); closeMobileMenu()" data-nav="about" class="mobile-nav-link w-full text-left px-4 py-2.5 rounded-2xl text-sm font-medium text-pearl-muted dark:text-noir-muted block">02 &middot; About &amp; Qualities</button>
+        <button onclick="navigateTo('experience'); closeMobileMenu()" data-nav="experience" class="mobile-nav-link w-full text-left px-4 py-2.5 rounded-2xl text-sm font-medium text-pearl-muted dark:text-noir-muted block">03 &middot; Academic &amp; Experience</button>
+        <button onclick="navigateTo('projects'); closeMobileMenu()" data-nav="projects" class="mobile-nav-link w-full text-left px-4 py-2.5 rounded-2xl text-sm font-medium text-pearl-muted dark:text-noir-muted block">04 &middot; Projects</button>
+        <button onclick="openCaseStudy(currentCaseStudyId); closeMobileMenu()" data-nav="casestudy" class="mobile-nav-link w-full text-left px-4 py-2.5 rounded-2xl text-sm font-medium text-pearl-muted dark:text-noir-muted block">05 &middot; Case Study</button>
+        <button onclick="navigateTo('gallery'); closeMobileMenu()" data-nav="gallery" class="mobile-nav-link w-full text-left px-4 py-2.5 rounded-2xl text-sm font-medium text-pearl-muted dark:text-noir-muted block">06 &middot; Creative Gallery</button>
+        <button onclick="navigateTo('contact'); closeMobileMenu()" data-nav="contact" class="mobile-nav-link w-full text-left px-4 py-2.5 rounded-2xl text-sm font-medium text-pearl-muted dark:text-noir-muted block">07 &middot; Contact</button>
+        <div class="pt-2 border-t border-pearl-border dark:border-white/10">
+          <button onclick="openResumeModal(); closeMobileMenu()" class="w-full py-2.5 rounded-2xl text-xs font-semibold bg-wine dark:bg-wine-rose text-white dark:text-noir-bg">
+            View &amp; Print Resume
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ==================== MAIN CONTENT CONTAINER (7 NAVIGABLE PAGES) ==================== -->
+  <main class="relative z-10 flex-grow max-w-6xl w-full mx-auto px-4 sm:px-6 lg:px-8 pt-10 pb-20 sm:pt-14 sm:pb-24">
+
+    <!-- ========================================================================= -->
+    <!-- PAGE 1: HOME (EDITORIAL HERO + APPLE BENTO GRID + SELECTED WORKS)         -->
+    <!-- ========================================================================= -->
+    <section id="page-home" class="page-section active space-y-14 sm:space-y-20">
+
+      <!-- Editorial Hero Header -->
+      <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-7">
+        <div class="space-y-4 max-w-3xl">
+          <!-- Pulsing Availability Pill -->
+          <div class="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full glass-surface">
+            <span class="relative flex h-2 w-2">
+              <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-wine dark:bg-wine-rose opacity-75"></span>
+              <span class="relative inline-flex rounded-full h-2 w-2 bg-wine dark:bg-wine-rose"></span>
+            </span>
+            <span class="font-mono text-[11px] font-medium tracking-wide text-pearl-muted dark:text-noir-muted">
+              Open for 2027 Internship &amp; Creative Collabs
+            </span>
+          </div>
+
+          <!-- Clean Modern Geometric Headline -->
+          <h1 class="font-display text-4xl sm:text-5xl lg:text-[3.75rem] font-bold tracking-tight leading-[1.06]">
+            Crafting <span class="text-wine dark:text-wine-rose">digital experiences</span> with modern editorial elegance.
+          </h1>
+        </div>
+
+        <!-- Quick Hero CTAs -->
+        <div class="flex flex-wrap items-center gap-3 shrink-0">
+          <button onclick="navigateTo('projects')" data-cursor="VIEW" class="group inline-flex items-center gap-2.5 px-6 py-3.5 rounded-full bg-wine hover:bg-wine-hover dark:bg-wine-rose dark:hover:bg-wine-roseHover text-white dark:text-noir-bg font-semibold text-xs sm:text-sm shadow-sm transition-all">
+            Explore Projects
+            <svg class="w-4 h-4 transition-transform group-hover:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+          </button>
+          <button onclick="openResumeModal()" data-cursor="OPEN" class="inline-flex items-center gap-2 px-6 py-3.5 rounded-full glass-surface hover:border-wine dark:hover:border-wine-rose text-xs sm:text-sm font-semibold transition-all">
+            View Resume
+          </button>
+        </div>
+      </div>
+
+      <!-- 12-COLUMN APPLE-STYLE BENTO GRID -->
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-4 sm:gap-5 auto-rows-auto">
+
+        <!-- BENTO 1 (Tall Portrait Card — Loads directly from images/profile) -->
+        <div class="bento-card glass-surface md:col-span-5 lg:col-span-4 md:row-span-2 rounded-[2rem] p-2.5 flex flex-col justify-between min-h-[420px] sm:min-h-[470px]">
+          <div class="relative w-full h-full flex-grow rounded-[1.55rem] overflow-hidden bg-gradient-to-b from-[#2A1D22] via-[#1C1619] to-[#120F12] flex flex-col justify-between">
+            <!-- Direct Portrait Image -->
+            <img
+              id="hero-profile-img"
+              src="images/profile.jpg"
+              data-base="images/profile"
+              data-ext-idx="0"
+              onerror="tryNextExt(this, 'hero-profile-fallback')"
+              alt="Nur Dania Sofea binti Amdan Portrait"
+              class="absolute inset-0 w-full h-full object-cover object-top"
+            />
+
+            <!-- Clean Fallback Monogram (Only shown if image file is missing) -->
+            <div id="hero-profile-fallback" class="hidden absolute inset-0 flex flex-col items-center justify-center p-8 text-center select-none bg-gradient-to-br from-[#2B1720] via-[#1B1418] to-[#0E0C10]">
+              <div class="relative z-10 w-32 h-32 rounded-full border border-champagne-dark/50 bg-white/[0.04] backdrop-blur-sm flex items-center justify-center shadow-2xl">
+                <span class="font-display text-5xl font-bold tracking-tight text-champagne-dark">DS</span>
+              </div>
+              <p class="relative z-10 font-mono text-[10px] uppercase tracking-[0.26em] text-champagne-dark/80 mt-5">
+                Portrait &middot; Edition '26
+              </p>
+            </div>
+
+            <!-- Subtle Bottom Gradient Scrim for Clean Caption Readability -->
+            <div class="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-black/80 via-black/35 to-transparent pointer-events-none z-10"></div>
+
+            <!-- Top Pill -->
+            <div class="relative z-20 flex items-center justify-between p-4">
+              <span class="font-mono text-[10px] uppercase tracking-[0.2em] px-3 py-1 rounded-full bg-black/45 backdrop-blur-md text-champagne-dark border border-white/15">
+                FTMK &bull; UTeM
+              </span>
+            </div>
+
+            <!-- Clean Bottom Glass Caption -->
+            <div class="relative z-20 p-4">
+              <div class="rounded-2xl bg-black/45 backdrop-blur-md border border-white/15 px-4 py-3 text-white">
+                <p class="font-display text-lg font-bold leading-tight truncate">Nur Dania Sofea</p>
+                <p class="font-mono text-[10px] tracking-wider text-champagne-dark uppercase mt-0.5 truncate">Melaka &amp; Johor, MY</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- BENTO 2 (Role & Bio Card with Animated Cycling Subtitle — 8 cols) -->
+        <div class="bento-card glass-surface md:col-span-7 lg:col-span-8 rounded-[2rem] p-6 sm:p-8 flex flex-col justify-between gap-6">
+          <div class="space-y-4">
+            <div class="flex flex-wrap items-center justify-between gap-2">
+              <span class="font-mono text-[11px] uppercase tracking-[0.2em] text-champagne dark:text-champagne-dark font-semibold">
+                01 &mdash; Identity
+              </span>
+              <span class="font-mono text-[11px] px-3 py-1 rounded-full bg-wine-soft dark:bg-wine-rose/15 text-wine dark:text-wine-rose font-medium">
+                B032510583 &middot; Year 3 ICT
+              </span>
+            </div>
+
+            <div class="space-y-2">
+              <p class="text-xs font-mono uppercase tracking-widest text-pearl-muted dark:text-noir-muted">Currently</p>
+              <h2 class="font-display text-3xl sm:text-4xl font-bold tracking-tight leading-tight">
+                <span id="cycling-role" class="role-fade inline-block text-wine dark:text-wine-rose">Junior Web Developer</span>
+              </h2>
+            </div>
+
+            <p class="text-sm sm:text-[15px] text-pearl-muted dark:text-noir-muted leading-relaxed max-w-2xl">
+              Year 3 ICT undergraduate at <strong class="font-semibold text-pearl-ink dark:text-noir-ink">FTMK, Universiti Teknikal Malaysia Melaka (UTeM)</strong> combining real-world web engineering across 67 international journal sites with a freelance clothing model, <strong class="font-semibold text-pearl-ink dark:text-noir-ink">content creator producing restaurant promotional videos (including Handi Roti)</strong>, and Canon PowerShot G7 X Mark III photographer's instinct for visual storytelling and human-centered interfaces.
+            </p>
+          </div>
+
+          <div class="flex flex-wrap items-center justify-between gap-4 pt-4 border-t border-pearl-border dark:border-white/10">
+            <div class="flex flex-wrap items-center gap-4 text-xs font-medium text-pearl-muted dark:text-noir-muted">
+              <a href="https://github.com/ddniasofea" target="_blank" rel="noopener noreferrer" data-cursor="OPEN" class="inline-flex items-center gap-1.5 hover:text-wine dark:hover:text-wine-rose transition-colors">
+                <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg>
+                GitHub
+              </a>
+              <a href="https://www.linkedin.com/in/dania-sofea-300163334" target="_blank" rel="noopener noreferrer" data-cursor="OPEN" class="inline-flex items-center gap-1.5 hover:text-wine dark:hover:text-wine-rose transition-colors">
+                <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg>
+                LinkedIn
+              </a>
+            </div>
+            <button onclick="navigateTo('about')" data-cursor="VIEW" class="inline-flex items-center gap-1.5 text-xs font-semibold text-wine dark:text-wine-rose hover:underline">
+              Read full story &rarr;
+            </button>
+          </div>
+        </div>
+
+        <!-- BENTO 3 (Metric Card: 67+ Journal Websites Managed — 4 cols) -->
+        <div id="home-metrics-trigger" onclick="openCaseStudy('zibeline-journals')" data-cursor="VIEW" class="bento-card glass-surface cursor-pointer md:col-span-7 lg:col-span-4 rounded-[2rem] p-6 sm:p-7 flex flex-col justify-between gap-5">
+          <div class="flex items-center justify-between">
+            <span class="font-mono text-[10px] uppercase tracking-[0.18em] text-pearl-muted dark:text-noir-muted">Industry Scale</span>
+            <div class="w-9 h-9 rounded-full bg-wine-soft dark:bg-wine-rose/15 text-wine dark:text-wine-rose flex items-center justify-center">
+              <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>
+            </div>
+          </div>
+          <div>
+            <p class="font-display text-5xl sm:text-6xl font-bold tracking-tight text-wine dark:text-wine-rose leading-none">
+              <span class="metric-counter" data-target="67" data-decimals="0" data-suffix="+">67+</span>
+            </p>
+            <p class="text-sm font-semibold mt-2.5">Academic Journal Websites Managed</p>
+            <p class="text-xs text-pearl-muted dark:text-noir-muted mt-1">Zibeline International Publishing &middot; Full-time &amp; Remote</p>
+          </div>
+        </div>
+
+        <!-- BENTO 4 (Academic Honours Card — 4 cols) -->
+        <div onclick="navigateTo('experience')" data-cursor="VIEW" class="bento-card glass-surface cursor-pointer md:col-span-12 lg:col-span-4 rounded-[2rem] p-6 sm:p-7 flex flex-col justify-between gap-5">
+          <div class="flex items-center justify-between">
+            <span class="font-mono text-[10px] uppercase tracking-[0.18em] text-pearl-muted dark:text-noir-muted">Academic Honours</span>
+            <div class="w-9 h-9 rounded-full bg-champagne-soft dark:bg-champagne-dark/15 text-champagne dark:text-champagne-dark flex items-center justify-center">
+              <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/></svg>
+            </div>
+          </div>
+          <div class="space-y-3">
+            <div class="p-3 rounded-2xl bg-pearl-soft/80 dark:bg-white/[0.04] border border-pearl-border/70 dark:border-white/[0.07]">
+              <p class="font-mono text-[10px] uppercase tracking-wider text-wine dark:text-wine-rose font-semibold">FTMK, UTeM Degree</p>
+              <p class="text-sm font-bold mt-0.5">UTeM Dean's List (2 Sems)</p>
+            </div>
+            <div class="p-3 rounded-2xl bg-pearl-soft/80 dark:bg-white/[0.04] border border-pearl-border/70 dark:border-white/[0.07]">
+              <p class="font-mono text-[10px] uppercase tracking-wider text-champagne dark:text-champagne-dark font-semibold">POLIMAS Diploma</p>
+              <p class="text-sm font-bold mt-0.5">
+                CGPA <span class="metric-counter" data-target="3.82" data-decimals="2" data-suffix="">3.82</span> <span class="font-normal text-xs text-pearl-muted dark:text-noir-muted">(Dean's Award Every Sem)</span>
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- BENTO 5 (Infinite Smooth Scrolling Marquee Card — 8 cols) -->
+        <div class="bento-card glass-surface md:col-span-7 lg:col-span-8 rounded-[2rem] p-6 sm:p-7 flex flex-col justify-between gap-5 overflow-hidden">
+          <div class="flex items-center justify-between gap-2">
+            <span class="font-mono text-[10px] uppercase tracking-[0.2em] text-pearl-muted dark:text-noir-muted">Tech &amp; Creative Stack</span>
+            <span class="font-mono text-[10px] text-champagne dark:text-champagne-dark">Hover to pause</span>
+          </div>
+
+          <div class="marquee-wrap relative overflow-hidden py-1 -mx-2">
+            <div class="absolute inset-y-0 left-0 w-10 bg-gradient-to-r from-white dark:from-[#141218] to-transparent z-10 pointer-events-none"></div>
+            <div class="absolute inset-y-0 right-0 w-10 bg-gradient-to-l from-white dark:from-[#141218] to-transparent z-10 pointer-events-none"></div>
+
+            <div class="marquee-track flex items-center gap-3">
+              <span class="px-4 py-2 rounded-full text-xs font-semibold bg-pearl-soft dark:bg-white/[0.06] border border-pearl-border dark:border-white/10">WordPress</span>
+              <span class="px-4 py-2 rounded-full text-xs font-semibold bg-wine-soft dark:bg-wine-rose/15 text-wine dark:text-wine-rose border border-wine/20 dark:border-wine-rose/25">Figma UI/UX</span>
+              <span class="px-4 py-2 rounded-full text-xs font-semibold bg-pearl-soft dark:bg-white/[0.06] border border-pearl-border dark:border-white/10">Laravel</span>
+              <span class="px-4 py-2 rounded-full text-xs font-semibold bg-pearl-soft dark:bg-white/[0.06] border border-pearl-border dark:border-white/10">Java</span>
+              <span class="px-4 py-2 rounded-full text-xs font-semibold bg-pearl-soft dark:bg-white/[0.06] border border-pearl-border dark:border-white/10">C++</span>
+              <span class="px-4 py-2 rounded-full text-xs font-semibold bg-pearl-soft dark:bg-white/[0.06] border border-pearl-border dark:border-white/10">MySQL</span>
+              <span class="px-4 py-2 rounded-full text-xs font-semibold bg-champagne-soft dark:bg-champagne-dark/15 text-champagne dark:text-champagne-dark border border-champagne/25">Power BI</span>
+              <span class="px-4 py-2 rounded-full text-xs font-semibold bg-pearl-soft dark:bg-white/[0.06] border border-pearl-border dark:border-white/10">HTML / CSS</span>
+              <span class="px-4 py-2 rounded-full text-xs font-semibold bg-pearl-soft dark:bg-white/[0.06] border border-pearl-border dark:border-white/10">WooCommerce</span>
+              <span class="px-4 py-2 rounded-full text-xs font-semibold bg-wine-soft dark:bg-wine-rose/15 text-wine dark:text-wine-rose border border-wine/20 dark:border-wine-rose/25">Apparel Modeling</span>
+              <span class="px-4 py-2 rounded-full text-xs font-semibold bg-champagne-soft dark:bg-champagne-dark/15 text-champagne dark:text-champagne-dark border border-champagne/25">Canon Photography</span>
+              <span class="px-4 py-2 rounded-full text-xs font-semibold bg-wine-soft dark:bg-wine-rose/15 text-wine dark:text-wine-rose border border-wine/20 dark:border-wine-rose/25">Content Creation</span>
+              <!-- Duplicate Set 2 for Seamless Infinite Loop -->
+              <span class="px-4 py-2 rounded-full text-xs font-semibold bg-pearl-soft dark:bg-white/[0.06] border border-pearl-border dark:border-white/10">WordPress</span>
+              <span class="px-4 py-2 rounded-full text-xs font-semibold bg-wine-soft dark:bg-wine-rose/15 text-wine dark:text-wine-rose border border-wine/20 dark:border-wine-rose/25">Figma UI/UX</span>
+              <span class="px-4 py-2 rounded-full text-xs font-semibold bg-pearl-soft dark:bg-white/[0.06] border border-pearl-border dark:border-white/10">Laravel</span>
+              <span class="px-4 py-2 rounded-full text-xs font-semibold bg-pearl-soft dark:bg-white/[0.06] border border-pearl-border dark:border-white/10">Java</span>
+              <span class="px-4 py-2 rounded-full text-xs font-semibold bg-pearl-soft dark:bg-white/[0.06] border border-pearl-border dark:border-white/10">C++</span>
+              <span class="px-4 py-2 rounded-full text-xs font-semibold bg-pearl-soft dark:bg-white/[0.06] border border-pearl-border dark:border-white/10">MySQL</span>
+              <span class="px-4 py-2 rounded-full text-xs font-semibold bg-champagne-soft dark:bg-champagne-dark/15 text-champagne dark:text-champagne-dark border border-champagne/25">Power BI</span>
+              <span class="px-4 py-2 rounded-full text-xs font-semibold bg-pearl-soft dark:bg-white/[0.06] border border-pearl-border dark:border-white/10">HTML / CSS</span>
+              <span class="px-4 py-2 rounded-full text-xs font-semibold bg-pearl-soft dark:bg-white/[0.06] border border-pearl-border dark:border-white/10">WooCommerce</span>
+              <span class="px-4 py-2 rounded-full text-xs font-semibold bg-wine-soft dark:bg-wine-rose/15 text-wine dark:text-wine-rose border border-wine/20 dark:border-wine-rose/25">Apparel Modeling</span>
+              <span class="px-4 py-2 rounded-full text-xs font-semibold bg-champagne-soft dark:bg-champagne-dark/15 text-champagne dark:text-champagne-dark border border-champagne/25">Canon Photography</span>
+              <span class="px-4 py-2 rounded-full text-xs font-semibold bg-wine-soft dark:bg-wine-rose/15 text-wine dark:text-wine-rose border border-wine/20 dark:border-wine-rose/25">Content Creation</span>
+            </div>
+          </div>
+
+          <p class="text-xs text-pearl-muted dark:text-noir-muted">
+            Bridging clean full-stack architecture, data analytics, apparel modeling, restaurant promo reels, and Canon PowerShot G7 X Mark III photography.
+          </p>
+        </div>
+
+        <!-- BENTO 6 (Quick Navigation Shortcut Card: Creative Lookbook & Contact — 4 cols) -->
+        <div class="bento-card rounded-[2rem] p-6 sm:p-7 bg-gradient-to-br from-[#8B2E4A] via-[#6D2139] to-[#2F121D] text-white border border-white/10 md:col-span-5 lg:col-span-4 flex flex-col justify-between gap-5 shadow-lg">
+          <div class="flex items-center justify-between">
+            <span class="font-mono text-[10px] uppercase tracking-[0.2em] text-champagne-dark">Direct Access</span>
+            <span class="w-2 h-2 rounded-full bg-champagne-dark"></span>
+          </div>
+          <div class="space-y-1.5">
+            <h3 class="font-display text-2xl sm:text-3xl font-bold tracking-tight leading-tight">Lookbook &amp; Reels</h3>
+            <p class="text-xs text-white/80 leading-relaxed">
+              Browse apparel modeling lookbooks, Handi Roti promo video reels, and Canon G7 X Mark III photography.
+            </p>
+          </div>
+          <div class="flex flex-wrap gap-2 pt-1">
+            <button onclick="navigateTo('gallery')" data-cursor="VIEW" class="px-4 py-2 rounded-full bg-white text-[#171514] hover:bg-champagne-soft text-xs font-semibold transition-colors">
+              Lookbook Gallery
+            </button>
+            <button onclick="navigateTo('contact')" data-cursor="OPEN" class="px-4 py-2 rounded-full bg-white/15 hover:bg-white/25 border border-white/25 text-white text-xs font-semibold transition-colors">
+              Contact &rarr;
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- SELECTED WORKS (3-Column Editorial Showcase -> Direct to Case Study) -->
+      <div class="reveal space-y-7 pt-4">
+        <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b border-pearl-border dark:border-white/10 pb-5">
+          <div>
+            <p class="font-mono text-[11px] uppercase tracking-[0.22em] text-wine dark:text-wine-rose font-semibold">Selected Works</p>
+            <h2 class="font-display text-3xl sm:text-4xl font-bold tracking-tight mt-1">Signature Case Studies</h2>
+          </div>
+          <button onclick="navigateTo('projects')" data-cursor="VIEW" class="inline-flex items-center gap-2 text-xs font-semibold text-wine dark:text-wine-rose hover:underline w-fit">
+            View all 9 projects &rarr;
+          </button>
+        </div>
+
+        <div id="featured-works-grid" class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <!-- Populated dynamically -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- PAGE 2: ABOUT & PERSONAL QUALITIES                                        -->
+    <!-- ========================================================================= -->
+    <section id="page-about" class="page-section space-y-16">
+
+      <div class="max-w-3xl space-y-3">
+        <p class="font-mono text-[11px] uppercase tracking-[0.22em] text-wine dark:text-wine-rose font-semibold">02 &mdash; About &amp; Qualities</p>
+        <h1 class="font-display text-4xl sm:text-5xl font-bold tracking-tight leading-[1.08]">
+          Where disciplined <span class="text-wine dark:text-wine-rose">software craft</span> meets editorial aesthetics.
+        </h1>
+      </div>
+
+      <div class="reveal grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+        <div class="bento-card glass-surface lg:col-span-7 rounded-[2rem] p-7 sm:p-9 space-y-4">
+          <span class="font-mono text-[10px] uppercase tracking-[0.2em] text-champagne dark:text-champagne-dark font-semibold">Biography</span>
+          <p class="text-sm sm:text-base text-pearl-muted dark:text-noir-muted leading-relaxed">
+            I am <strong class="font-semibold text-pearl-ink dark:text-noir-ink">Nur Dania Sofea binti Amdan</strong>, a Year 3 Bachelor of Information &amp; Communication Technology undergraduate at <strong class="font-semibold text-pearl-ink dark:text-noir-ink">FTMK, Universiti Teknikal Malaysia Melaka (UTeM)</strong>, where I have consistently earned the <strong class="font-semibold text-wine dark:text-wine-rose">UTeM Dean's List Award across 2 semesters</strong>. Before entering my degree, I graduated with a Diploma in Information Technology (Digital Technology) from Politeknik Sultan Abdul Halim Mu'adzam Shah (POLIMAS) with a <strong class="font-semibold text-wine dark:text-wine-rose">3.82 CGPA</strong>, receiving both the <span class="font-semibold text-pearl-ink dark:text-noir-ink">Anugerah Pelajar Cemerlang</span> and the Dean's Award every single semester.
+          </p>
+          <p class="text-sm sm:text-base text-pearl-muted dark:text-noir-muted leading-relaxed">
+            Beyond the lecture hall, I gained hands-on industry experience as a <strong class="font-semibold text-pearl-ink dark:text-noir-ink">Junior Web Developer at Zibeline International Publishing</strong>—managing and maintaining <strong class="font-semibold text-wine dark:text-wine-rose">67 academic journal websites</strong> full-time in Cyberjaya before continuing remotely part-time alongside my degree. Earlier, I interned as a Web Developer at <strong class="font-semibold text-pearl-ink dark:text-noir-ink">Rekasawang Sdn. Bhd.</strong>, building responsive WordPress &amp; Elementor client portals (Klinik Akhi, PACU, UNIPSAS APEL, Pemikir, JejakVacation), configuring WooCommerce &amp; toyyibPay/EasyParcel stores (NuuhaBeauty, SuperKidzz), and developing a Laravel &amp; MySQL app (LaraGigs).
+          </p>
+          <p class="text-sm sm:text-base text-pearl-muted dark:text-noir-muted leading-relaxed">
+            In parallel with technology, I work as a <strong class="font-semibold text-pearl-ink dark:text-noir-ink">freelance clothing model, content creator, and Canon PowerShot G7 X Mark III photographer</strong>—collaborating with local boutiques on baju kurung and modest wear campaigns as well as producing promotional food and restaurant videos for F&amp;B brands such as <strong class="font-semibold text-pearl-ink dark:text-noir-ink">Handi Roti</strong>. That creative background directly sharpens my eye for hierarchy, pacing, and storytelling in UI/UX design.
+          </p>
+        </div>
+
+        <div class="bento-card glass-surface lg:col-span-5 rounded-[2rem] p-7 sm:p-8 space-y-5">
+          <span class="font-mono text-[10px] uppercase tracking-[0.2em] text-champagne dark:text-champagne-dark font-semibold">Profile Snapshot</span>
+          <ul class="space-y-4 text-sm">
+            <li class="flex items-start gap-3.5">
+              <div class="w-10 h-10 rounded-2xl bg-wine-soft dark:bg-wine-rose/15 text-wine dark:text-wine-rose flex items-center justify-center shrink-0">
+                <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="20" height="14" x="2" y="7" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+              </div>
+              <div>
+                <p class="font-semibold">Junior Web Developer</p>
+                <p class="text-xs text-pearl-muted dark:text-noir-muted mt-0.5">Zibeline Int. Publishing &middot; 67 Journal Sites</p>
+              </div>
+            </li>
+            <li class="flex items-start gap-3.5">
+              <div class="w-10 h-10 rounded-2xl bg-champagne-soft dark:bg-champagne-dark/15 text-champagne dark:text-champagne-dark flex items-center justify-center shrink-0">
+                <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+              </div>
+              <div>
+                <p class="font-semibold">Bachelor of ICT (FTMK, UTeM)</p>
+                <p class="text-xs text-pearl-muted dark:text-noir-muted mt-0.5">Year 3 Undergraduate &middot; Dean's List (2 Sems)</p>
+              </div>
+            </li>
+            <li class="flex items-start gap-3.5">
+              <div class="w-10 h-10 rounded-2xl bg-wine-soft dark:bg-wine-rose/15 text-wine dark:text-wine-rose flex items-center justify-center shrink-0">
+                <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/></svg>
+              </div>
+              <div>
+                <p class="font-semibold">Diploma in IT (POLIMAS)</p>
+                <p class="text-xs text-pearl-muted dark:text-noir-muted mt-0.5">CGPA 3.82 &middot; Ex-Intern, Rekasawang Sdn. Bhd.</p>
+              </div>
+            </li>
+            <li class="flex items-start gap-3.5">
+              <div class="w-10 h-10 rounded-2xl bg-champagne-soft dark:bg-champagne-dark/15 text-champagne dark:text-champagne-dark flex items-center justify-center shrink-0">
+                <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z"/><circle cx="12" cy="13" r="3"/></svg>
+              </div>
+              <div>
+                <p class="font-semibold">Model, Photographer &amp; Content Creator</p>
+                <p class="text-xs text-pearl-muted dark:text-noir-muted mt-0.5">Apparel Shoots, Handi Roti Promo Reels &amp; Canon G7 X</p>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- 4 Personal Qualities Cards -->
+      <div class="reveal space-y-6">
+        <div>
+          <p class="font-mono text-[11px] uppercase tracking-[0.22em] text-wine dark:text-wine-rose font-semibold">Personal Qualities</p>
+          <h2 class="font-display text-3xl font-bold tracking-tight mt-1">Four Pillars of How I Work</h2>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+          <div class="bento-card glass-surface rounded-3xl p-6 space-y-3.5">
+            <div class="w-11 h-11 rounded-2xl bg-wine-soft dark:bg-wine-rose/15 text-wine dark:text-wine-rose flex items-center justify-center">
+              <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
+            </div>
+            <h3 class="font-display text-lg font-bold tracking-tight">Structured Problem Solver</h3>
+            <p class="text-xs sm:text-sm text-pearl-muted dark:text-noir-muted leading-relaxed">
+              Breaks down complex systems—from 67-site WordPress operations to distributed Java sockets and IoT security—into clean, verifiable steps.
+            </p>
+          </div>
+
+          <div class="bento-card glass-surface rounded-3xl p-6 space-y-3.5">
+            <div class="w-11 h-11 rounded-2xl bg-champagne-soft dark:bg-champagne-dark/15 text-champagne dark:text-champagne-dark flex items-center justify-center">
+              <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>
+            </div>
+            <h3 class="font-display text-lg font-bold tracking-tight">Detail-Oriented Craft</h3>
+            <p class="text-xs sm:text-sm text-pearl-muted dark:text-noir-muted leading-relaxed">
+              Unites HCI design principles with editorial photography and video framing so every layout grid, pacing beat, and micro-interaction feels intentional.
+            </p>
+          </div>
+
+          <div class="bento-card glass-surface rounded-3xl p-6 space-y-3.5">
+            <div class="w-11 h-11 rounded-2xl bg-wine-soft dark:bg-wine-rose/15 text-wine dark:text-wine-rose flex items-center justify-center">
+              <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            </div>
+            <h3 class="font-display text-lg font-bold tracking-tight">Collaborative Coordinator</h3>
+            <p class="text-xs sm:text-sm text-pearl-muted dark:text-noir-muted leading-relaxed">
+              Coordinates deliverables seamlessly across remote publishing teams, university project squads, F&amp;B owners, stylists, and fashion boutique clients.
+            </p>
+          </div>
+
+          <div class="bento-card glass-surface rounded-3xl p-6 space-y-3.5">
+            <div class="w-11 h-11 rounded-2xl bg-champagne-soft dark:bg-champagne-dark/15 text-champagne dark:text-champagne-dark flex items-center justify-center">
+              <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/></svg>
+            </div>
+            <h3 class="font-display text-lg font-bold tracking-tight">Creative Adaptability</h3>
+            <p class="text-xs sm:text-sm text-pearl-muted dark:text-noir-muted leading-relaxed">
+              Shifts effortlessly between backend coding, Power BI forecasting, apparel modeling, restaurant promo video creation, and Canon photography while keeping Dean's List standards.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Categorized Technical & Creative Skills -->
+      <div class="reveal space-y-6">
+        <div>
+          <p class="font-mono text-[11px] uppercase tracking-[0.22em] text-wine dark:text-wine-rose font-semibold">Skillset</p>
+          <h2 class="font-display text-3xl font-bold tracking-tight mt-1">Technical &amp; Creative Capabilities</h2>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+          <div class="bento-card glass-surface rounded-3xl p-6 space-y-4">
+            <div class="flex items-center justify-between">
+              <h3 class="font-display text-xl font-bold tracking-tight">Web &amp; UI/UX</h3>
+              <span class="font-mono text-[10px] text-wine dark:text-wine-rose uppercase">01</span>
+            </div>
+            <div class="flex flex-wrap gap-2">
+              <span class="px-3 py-1.5 rounded-full text-xs font-medium bg-pearl-soft dark:bg-white/[0.06] border border-pearl-border dark:border-white/10">WordPress</span>
+              <span class="px-3 py-1.5 rounded-full text-xs font-medium bg-pearl-soft dark:bg-white/[0.06] border border-pearl-border dark:border-white/10">Elementor</span>
+              <span class="px-3 py-1.5 rounded-full text-xs font-medium bg-pearl-soft dark:bg-white/[0.06] border border-pearl-border dark:border-white/10">Figma</span>
+              <span class="px-3 py-1.5 rounded-full text-xs font-medium bg-pearl-soft dark:bg-white/[0.06] border border-pearl-border dark:border-white/10">HTML / CSS</span>
+              <span class="px-3 py-1.5 rounded-full text-xs font-medium bg-pearl-soft dark:bg-white/[0.06] border border-pearl-border dark:border-white/10">Laravel</span>
+              <span class="px-3 py-1.5 rounded-full text-xs font-medium bg-pearl-soft dark:bg-white/[0.06] border border-pearl-border dark:border-white/10">WooCommerce</span>
+              <span class="px-3 py-1.5 rounded-full text-xs font-medium bg-pearl-soft dark:bg-white/[0.06] border border-pearl-border dark:border-white/10">JavaScript</span>
+            </div>
+          </div>
+
+          <div class="bento-card glass-surface rounded-3xl p-6 space-y-4">
+            <div class="flex items-center justify-between">
+              <h3 class="font-display text-xl font-bold tracking-tight">Software, AI &amp; Data</h3>
+              <span class="font-mono text-[10px] text-champagne dark:text-champagne-dark uppercase">02</span>
+            </div>
+            <div class="flex flex-wrap gap-2">
+              <span class="px-3 py-1.5 rounded-full text-xs font-medium bg-pearl-soft dark:bg-white/[0.06] border border-pearl-border dark:border-white/10">Java</span>
+              <span class="px-3 py-1.5 rounded-full text-xs font-medium bg-pearl-soft dark:bg-white/[0.06] border border-pearl-border dark:border-white/10">C++</span>
+              <span class="px-3 py-1.5 rounded-full text-xs font-medium bg-pearl-soft dark:bg-white/[0.06] border border-pearl-border dark:border-white/10">Python</span>
+              <span class="px-3 py-1.5 rounded-full text-xs font-medium bg-pearl-soft dark:bg-white/[0.06] border border-pearl-border dark:border-white/10">PHP</span>
+              <span class="px-3 py-1.5 rounded-full text-xs font-medium bg-pearl-soft dark:bg-white/[0.06] border border-pearl-border dark:border-white/10">MySQL</span>
+              <span class="px-3 py-1.5 rounded-full text-xs font-medium bg-pearl-soft dark:bg-white/[0.06] border border-pearl-border dark:border-white/10">Power BI</span>
+              <span class="px-3 py-1.5 rounded-full text-xs font-medium bg-pearl-soft dark:bg-white/[0.06] border border-pearl-border dark:border-white/10">ESP32 IoT</span>
+            </div>
+          </div>
+
+          <div class="bento-card glass-surface rounded-3xl p-6 space-y-4">
+            <div class="flex items-center justify-between">
+              <h3 class="font-display text-xl font-bold tracking-tight">Creative &amp; Media</h3>
+              <span class="font-mono text-[10px] text-wine dark:text-wine-rose uppercase">03</span>
+            </div>
+            <div class="flex flex-wrap gap-2">
+              <span class="px-3 py-1.5 rounded-full text-xs font-medium bg-pearl-soft dark:bg-white/[0.06] border border-pearl-border dark:border-white/10">Apparel Modeling</span>
+              <span class="px-3 py-1.5 rounded-full text-xs font-medium bg-pearl-soft dark:bg-white/[0.06] border border-pearl-border dark:border-white/10">Canon Photography</span>
+              <span class="px-3 py-1.5 rounded-full text-xs font-medium bg-pearl-soft dark:bg-white/[0.06] border border-pearl-border dark:border-white/10">Content Creation</span>
+              <span class="px-3 py-1.5 rounded-full text-xs font-medium bg-pearl-soft dark:bg-white/[0.06] border border-pearl-border dark:border-white/10">Promo Video Reels</span>
+              <span class="px-3 py-1.5 rounded-full text-xs font-medium bg-pearl-soft dark:bg-white/[0.06] border border-pearl-border dark:border-white/10">Editorial OOTD</span>
+              <span class="px-3 py-1.5 rounded-full text-xs font-medium bg-pearl-soft dark:bg-white/[0.06] border border-pearl-border dark:border-white/10">Visual Styling</span>
+              <span class="px-3 py-1.5 rounded-full text-xs font-medium bg-pearl-soft dark:bg-white/[0.06] border border-pearl-border dark:border-white/10">Canva</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Awards & Certifications Grid -->
+      <div class="reveal space-y-6">
+        <div>
+          <p class="font-mono text-[11px] uppercase tracking-[0.22em] text-wine dark:text-wine-rose font-semibold">Distinctions</p>
+          <h2 class="font-display text-3xl font-bold tracking-tight mt-1">Awards &amp; Certifications</h2>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+          <div class="bento-card glass-surface rounded-3xl p-6 sm:p-7 space-y-2.5 border-l-4 border-l-wine dark:border-l-wine-rose">
+            <div class="flex items-center justify-between gap-2">
+              <span class="font-mono text-[10px] uppercase tracking-widest text-wine dark:text-wine-rose font-semibold">Degree Honour</span>
+              <span class="font-mono text-[11px] text-pearl-muted dark:text-noir-muted">2 Semesters</span>
+            </div>
+            <h3 class="font-display text-2xl font-bold tracking-tight">UTeM Dean's List (2 Semesters)</h3>
+            <p class="text-xs font-medium text-champagne dark:text-champagne-dark">FTMK, Universiti Teknikal Malaysia Melaka</p>
+            <p class="text-sm text-pearl-muted dark:text-noir-muted leading-relaxed">Recognized on the Faculty Dean's List for sustained high academic standing across undergraduate ICT studies.</p>
+          </div>
+
+          <div class="bento-card glass-surface rounded-3xl p-6 sm:p-7 space-y-2.5 border-l-4 border-l-champagne dark:border-l-champagne-dark">
+            <div class="flex items-center justify-between gap-2">
+              <span class="font-mono text-[10px] uppercase tracking-widest text-champagne dark:text-champagne-dark font-semibold">Top Academic Award</span>
+              <span class="font-mono text-[11px] text-pearl-muted dark:text-noir-muted">POLIMAS</span>
+            </div>
+            <h3 class="font-display text-2xl font-bold tracking-tight">Academic Excellence Award</h3>
+            <p class="text-xs font-medium text-wine dark:text-wine-rose">Anugerah Pelajar Cemerlang &middot; POLIMAS</p>
+            <p class="text-sm text-pearl-muted dark:text-noir-muted leading-relaxed">Awarded for outstanding overall academic excellence throughout the Diploma in Information Technology programme.</p>
+          </div>
+
+          <div class="bento-card glass-surface rounded-3xl p-6 sm:p-7 space-y-2.5">
+            <div class="flex items-center justify-between gap-2">
+              <span class="font-mono text-[10px] uppercase tracking-widest text-wine dark:text-wine-rose font-semibold">Consistent Distinction</span>
+              <span class="font-mono text-[11px] text-pearl-muted dark:text-noir-muted">CGPA 3.82</span>
+            </div>
+            <h3 class="font-display text-2xl font-bold tracking-tight">Dean's Award — Every Semester</h3>
+            <p class="text-xs font-medium text-champagne dark:text-champagne-dark">Anugerah Ketua Jabatan &middot; POLIMAS</p>
+            <p class="text-sm text-pearl-muted dark:text-noir-muted leading-relaxed">Maintained Dean's Award recognition from the Department of ICT in every semester of Diploma study.</p>
+          </div>
+
+          <div class="bento-card glass-surface rounded-3xl p-6 sm:p-7 space-y-2.5">
+            <div class="flex items-center justify-between gap-2">
+              <span class="font-mono text-[10px] uppercase tracking-widest text-champagne dark:text-champagne-dark font-semibold">Leadership &amp; Pitching</span>
+              <span class="font-mono text-[11px] text-pearl-muted dark:text-noir-muted">2023</span>
+            </div>
+            <h3 class="font-display text-2xl font-bold tracking-tight">iCompEx 2023 &amp; PEPCI 2023</h3>
+            <p class="text-xs font-medium text-wine dark:text-wine-rose">Social Media Committee &amp; Entrepreneurial Pitching</p>
+            <p class="text-sm text-pearl-muted dark:text-noir-muted leading-relaxed">Managed exhibition social content for iCompEx 2023 and pitched an entrepreneurial business concept at PEPCI 2023.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- PAGE 3: ACADEMIC & EXPERIENCE                                             -->
+    <!-- ========================================================================= -->
+    <section id="page-experience" class="page-section space-y-12">
+
+      <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-6">
+        <div class="max-w-2xl space-y-3">
+          <p class="font-mono text-[11px] uppercase tracking-[0.22em] text-wine dark:text-wine-rose font-semibold">03 &mdash; Experience &amp; Education</p>
+          <h1 class="font-display text-4xl sm:text-5xl font-bold tracking-tight leading-[1.08]">
+            Career Milestones &amp; <span class="text-wine dark:text-wine-rose">Academic Journey</span>
+          </h1>
+        </div>
+
+        <div id="exp-filter-bar" class="relative inline-flex flex-wrap items-center gap-1 p-1.5 rounded-full glass-surface w-fit" role="tablist">
+          <div id="exp-filter-pill" class="sliding-pill absolute top-1.5 bottom-1.5 rounded-full bg-wine dark:bg-wine-rose pointer-events-none opacity-0"></div>
+          <button onclick="filterExperience('all')" data-exp-filter="all" class="exp-filter-btn relative z-10 px-4 py-2 rounded-full text-xs font-semibold transition-colors">All</button>
+          <button onclick="filterExperience('work')" data-exp-filter="work" class="exp-filter-btn relative z-10 px-4 py-2 rounded-full text-xs font-semibold transition-colors">Work Experience</button>
+          <button onclick="filterExperience('academic')" data-exp-filter="academic" class="exp-filter-btn relative z-10 px-4 py-2 rounded-full text-xs font-semibold transition-colors">Academic History</button>
+        </div>
+      </div>
+
+      <!-- WORK & FREELANCE TIMELINE -->
+      <div id="timeline-work-block" class="reveal space-y-6">
+        <div class="flex items-center gap-3">
+          <span class="w-9 h-9 rounded-full bg-wine-soft dark:bg-wine-rose/15 text-wine dark:text-wine-rose flex items-center justify-center">
+            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="20" height="14" x="2" y="7" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+          </span>
+          <h2 class="font-display text-2xl sm:text-3xl font-bold tracking-tight">Work &amp; Freelance Experience</h2>
+        </div>
+
+        <div class="relative pl-6 sm:pl-10 border-l border-pearl-border dark:border-white/15 space-y-6">
+          <div class="relative">
+            <span class="absolute -left-[31px] sm:-left-[47px] top-3 w-3.5 h-3.5 rounded-full bg-wine dark:bg-wine-rose ring-4 ring-pearl-bg dark:ring-noir-bg"></span>
+            <div class="bento-card glass-surface rounded-3xl p-6 sm:p-8 space-y-3.5">
+              <div class="flex flex-wrap items-center justify-between gap-2">
+                <div class="flex flex-wrap items-center gap-2">
+                  <span class="font-mono text-[10px] uppercase tracking-wider px-3 py-1 rounded-full bg-wine-soft dark:bg-wine-rose/15 text-wine dark:text-wine-rose font-semibold">Part-time &middot; Remote</span>
+                  <span class="font-mono text-[11px] text-pearl-muted dark:text-noir-muted">Mar 2026 – Oct 2026 (8 mos)</span>
+                </div>
+                <span class="font-mono text-[11px] text-pearl-muted dark:text-noir-muted">Cyberjaya, Selangor</span>
+              </div>
+              <div>
+                <h3 class="font-display text-2xl font-bold tracking-tight">Junior Web Developer</h3>
+                <p class="text-xs font-semibold text-champagne dark:text-champagne-dark mt-0.5">Zibeline International Publishing</p>
+              </div>
+              <p class="text-sm text-pearl-muted dark:text-noir-muted leading-relaxed">
+                Managed publishing web updates, structured academic content formatting, and maintained digital publishing consistency remotely alongside Year 3 degree coursework.
+              </p>
+              <div class="flex flex-wrap gap-2 pt-1">
+                <span class="font-mono text-[10px] px-3 py-1 rounded-full bg-pearl-soft dark:bg-white/[0.06] border border-pearl-border dark:border-white/10">WordPress</span>
+                <span class="font-mono text-[10px] px-3 py-1 rounded-full bg-pearl-soft dark:bg-white/[0.06] border border-pearl-border dark:border-white/10">Microsoft Word</span>
+                <span class="font-mono text-[10px] px-3 py-1 rounded-full bg-pearl-soft dark:bg-white/[0.06] border border-pearl-border dark:border-white/10">Remote Editorial Ops</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="relative">
+            <span class="absolute -left-[31px] sm:-left-[47px] top-3 w-3.5 h-3.5 rounded-full bg-champagne dark:bg-champagne-dark ring-4 ring-pearl-bg dark:ring-noir-bg"></span>
+            <div class="bento-card glass-surface rounded-3xl p-6 sm:p-8 space-y-3.5 border-l-4 border-l-wine dark:border-l-wine-rose">
+              <div class="flex flex-wrap items-center justify-between gap-2">
+                <div class="flex flex-wrap items-center gap-2">
+                  <span class="font-mono text-[10px] uppercase tracking-wider px-3 py-1 rounded-full bg-wine text-white dark:bg-wine-rose dark:text-noir-bg font-semibold">Full-time &middot; On-site</span>
+                  <span class="font-mono text-[11px] text-pearl-muted dark:text-noir-muted">Jan 2025 – Sep 2025 (9 mos)</span>
+                  <span class="font-mono text-[10px] px-2.5 py-1 rounded-full bg-champagne-soft dark:bg-champagne-dark/15 text-champagne dark:text-champagne-dark font-semibold">67 Journal Websites</span>
+                </div>
+                <span class="font-mono text-[11px] text-pearl-muted dark:text-noir-muted">Cyberjaya, Selangor</span>
+              </div>
+              <div>
+                <h3 class="font-display text-2xl font-bold tracking-tight">Junior Web Developer</h3>
+                <p class="text-xs font-semibold text-champagne dark:text-champagne-dark mt-0.5">Zibeline International Publishing</p>
+              </div>
+              <p class="text-sm text-pearl-muted dark:text-noir-muted leading-relaxed">
+                Managed and maintained <strong class="font-semibold text-pearl-ink dark:text-noir-ink">67 academic journal websites</strong> under the company's publishing platform; designed and updated WordPress sites, formatted academic publications, and optimized site performance.
+              </p>
+              <div class="flex flex-wrap gap-2 pt-1">
+                <span class="font-mono text-[10px] px-3 py-1 rounded-full bg-pearl-soft dark:bg-white/[0.06] border border-pearl-border dark:border-white/10">67-Site Portfolio</span>
+                <span class="font-mono text-[10px] px-3 py-1 rounded-full bg-pearl-soft dark:bg-white/[0.06] border border-pearl-border dark:border-white/10">WordPress Design</span>
+                <span class="font-mono text-[10px] px-3 py-1 rounded-full bg-pearl-soft dark:bg-white/[0.06] border border-pearl-border dark:border-white/10">Site Optimization</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="relative">
+            <span class="absolute -left-[31px] sm:-left-[47px] top-3 w-3.5 h-3.5 rounded-full bg-wine/70 dark:bg-wine-rose/70 ring-4 ring-pearl-bg dark:ring-noir-bg"></span>
+            <div class="bento-card glass-surface rounded-3xl p-6 sm:p-8 space-y-3.5">
+              <div class="flex flex-wrap items-center justify-between gap-2">
+                <div class="flex flex-wrap items-center gap-2">
+                  <span class="font-mono text-[10px] uppercase tracking-wider px-3 py-1 rounded-full bg-champagne-soft dark:bg-champagne-dark/15 text-champagne dark:text-champagne-dark font-semibold">Freelance &middot; Self-employed</span>
+                  <span class="font-mono text-[11px] text-pearl-muted dark:text-noir-muted">Jan 2025 – Present</span>
+                </div>
+                <span class="font-mono text-[11px] text-pearl-muted dark:text-noir-muted">On-site &middot; Malaysia</span>
+              </div>
+              <div>
+                <h3 class="font-display text-2xl font-bold tracking-tight">Clothing Model, Photographer &amp; Content Creator</h3>
+                <p class="text-xs font-semibold text-wine dark:text-wine-rose mt-0.5">Fashion Modeling, Restaurant Promo Videos &amp; Canon Photography</p>
+              </div>
+              <p class="text-sm text-pearl-muted dark:text-noir-muted leading-relaxed">
+                Modeled apparel for fashion photoshoots (baju kurung, modest, and contemporary wear), captured editorial OOTD and natural-light photography using a <strong class="font-semibold text-pearl-ink dark:text-noir-ink">Canon PowerShot G7 X Mark III</strong>, and produced engaging promotional video reels for F&amp;B and restaurant brands including <strong class="font-semibold text-pearl-ink dark:text-noir-ink">Handi Roti</strong>.
+              </p>
+              <div class="flex flex-wrap gap-2 pt-1">
+                <span class="font-mono text-[10px] px-3 py-1 rounded-full bg-pearl-soft dark:bg-white/[0.06] border border-pearl-border dark:border-white/10">Apparel Modeling</span>
+                <span class="font-mono text-[10px] px-3 py-1 rounded-full bg-pearl-soft dark:bg-white/[0.06] border border-pearl-border dark:border-white/10">Canon Photography</span>
+                <span class="font-mono text-[10px] px-3 py-1 rounded-full bg-pearl-soft dark:bg-white/[0.06] border border-pearl-border dark:border-white/10">Content Creation</span>
+                <span class="font-mono text-[10px] px-3 py-1 rounded-full bg-pearl-soft dark:bg-white/[0.06] border border-pearl-border dark:border-white/10">Restaurant Promo Video</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="relative">
+            <span class="absolute -left-[31px] sm:-left-[47px] top-3 w-3.5 h-3.5 rounded-full bg-pearl-muted dark:bg-noir-muted ring-4 ring-pearl-bg dark:ring-noir-bg"></span>
+            <div class="bento-card glass-surface rounded-3xl p-6 sm:p-8 space-y-3.5">
+              <div class="flex flex-wrap items-center justify-between gap-2">
+                <div class="flex flex-wrap items-center gap-2">
+                  <span class="font-mono text-[10px] uppercase tracking-wider px-3 py-1 rounded-full bg-pearl-soft dark:bg-white/10 text-pearl-ink dark:text-noir-ink font-semibold">Internship &middot; On-site</span>
+                  <span class="font-mono text-[11px] text-pearl-muted dark:text-noir-muted">Jul 2024 – Nov 2024 (5 mos)</span>
+                </div>
+                <span class="font-mono text-[11px] text-pearl-muted dark:text-noir-muted">Bandar Baru Bangi, Selangor</span>
+              </div>
+              <div>
+                <h3 class="font-display text-2xl font-bold tracking-tight">Web Developer Intern</h3>
+                <p class="text-xs font-semibold text-champagne dark:text-champagne-dark mt-0.5">Rekasawang Sdn. Bhd.</p>
+              </div>
+              <p class="text-sm text-pearl-muted dark:text-noir-muted leading-relaxed">
+                Built and refined responsive client websites including <strong class="font-semibold text-pearl-ink dark:text-noir-ink">klinikakhi.com.my</strong>, <strong class="font-semibold text-pearl-ink dark:text-noir-ink">pacuummah.com</strong>, <strong class="font-semibold text-pearl-ink dark:text-noir-ink">promosi.unipsas.edu.my</strong>, <strong class="font-semibold text-pearl-ink dark:text-noir-ink">pemikir.sawang.dev</strong>, and <strong class="font-semibold text-pearl-ink dark:text-noir-ink">jejakvacation.sawang.dev</strong> from Figma layouts; configured <strong class="font-semibold text-pearl-ink dark:text-noir-ink">WooCommerce</strong> weight-based shipping (<strong class="font-semibold text-pearl-ink dark:text-noir-ink">nuuhabeauty.com</strong>) and <strong class="font-semibold text-pearl-ink dark:text-noir-ink">toyyibPay / EasyParcel</strong> integration (<strong class="font-semibold text-pearl-ink dark:text-noir-ink">superkidzz.com.my</strong>); built a <strong class="font-semibold text-pearl-ink dark:text-noir-ink">Laravel &amp; MySQL</strong> job/gig web app (<strong class="font-semibold text-pearl-ink dark:text-noir-ink">LaraGigs</strong>); and conducted <strong class="font-semibold text-pearl-ink dark:text-noir-ink">UAT</strong>, <strong class="font-semibold text-pearl-ink dark:text-noir-ink">QC</strong> with designers, bilingual translations, and client speed/SEO reports.
+              </p>
+              <div class="flex flex-wrap gap-2 pt-1">
+                <span class="font-mono text-[10px] px-3 py-1 rounded-full bg-pearl-soft dark:bg-white/[0.06] border border-pearl-border dark:border-white/10">WordPress &amp; Elementor</span>
+                <span class="font-mono text-[10px] px-3 py-1 rounded-full bg-pearl-soft dark:bg-white/[0.06] border border-pearl-border dark:border-white/10">Figma</span>
+                <span class="font-mono text-[10px] px-3 py-1 rounded-full bg-pearl-soft dark:bg-white/[0.06] border border-pearl-border dark:border-white/10">WooCommerce &amp; toyyibPay</span>
+                <span class="font-mono text-[10px] px-3 py-1 rounded-full bg-pearl-soft dark:bg-white/[0.06] border border-pearl-border dark:border-white/10">Laravel &amp; MySQL</span>
+                <span class="font-mono text-[10px] px-3 py-1 rounded-full bg-pearl-soft dark:bg-white/[0.06] border border-pearl-border dark:border-white/10">UAT &amp; QC</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ACADEMIC HISTORY TIMELINE -->
+      <div id="timeline-academic-block" class="reveal space-y-6">
+        <div class="flex items-center gap-3">
+          <span class="w-9 h-9 rounded-full bg-champagne-soft dark:bg-champagne-dark/15 text-champagne dark:text-champagne-dark flex items-center justify-center">
+            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+          </span>
+          <h2 class="font-display text-2xl sm:text-3xl font-bold tracking-tight">Academic History</h2>
+        </div>
+
+        <div class="relative pl-6 sm:pl-10 border-l border-pearl-border dark:border-white/15 space-y-6">
+          <div class="relative">
+            <span class="absolute -left-[31px] sm:-left-[47px] top-3 w-3.5 h-3.5 rounded-full bg-wine dark:bg-wine-rose ring-4 ring-pearl-bg dark:ring-noir-bg"></span>
+            <div class="bento-card glass-surface rounded-3xl p-6 sm:p-8 space-y-3.5">
+              <div class="flex flex-wrap items-center justify-between gap-2">
+                <div class="flex flex-wrap items-center gap-2">
+                  <span class="font-mono text-[10px] uppercase tracking-wider px-3 py-1 rounded-full bg-wine-soft dark:bg-wine-rose/15 text-wine dark:text-wine-rose font-semibold">Year 3 &middot; 2025 – Present</span>
+                  <span class="font-mono text-[10px] px-2.5 py-1 rounded-full bg-champagne-soft dark:bg-champagne-dark/15 text-champagne dark:text-champagne-dark font-semibold">Dean's List (2 Semesters)</span>
+                </div>
+                <span class="font-mono text-[11px] text-pearl-muted dark:text-noir-muted">Melaka, Malaysia</span>
+              </div>
+              <div>
+                <h3 class="font-display text-2xl font-bold tracking-tight">Bachelor of Information &amp; Communication Technology</h3>
+                <p class="text-xs font-semibold text-pearl-muted dark:text-noir-muted mt-0.5">Universiti Teknikal Malaysia Melaka (UTeM), FTMK</p>
+              </div>
+              <p class="text-sm text-pearl-muted dark:text-noir-muted leading-relaxed">
+                Core focus in UI/UX &amp; Human-Computer Interaction, Distributed Systems, Databases, Software Project Management, Artificial Intelligence, and Business Intelligence.
+              </p>
+            </div>
+          </div>
+
+          <div class="relative">
+            <span class="absolute -left-[31px] sm:-left-[47px] top-3 w-3.5 h-3.5 rounded-full bg-champagne dark:bg-champagne-dark ring-4 ring-pearl-bg dark:ring-noir-bg"></span>
+            <div class="bento-card glass-surface rounded-3xl p-6 sm:p-8 space-y-3.5">
+              <div class="flex flex-wrap items-center justify-between gap-2">
+                <div class="flex flex-wrap items-center gap-2">
+                  <span class="font-mono text-[10px] uppercase tracking-wider px-3 py-1 rounded-full bg-pearl-soft dark:bg-white/10 font-semibold">Feb 2022 – Nov 2024</span>
+                  <span class="font-mono text-[10px] px-2.5 py-1 rounded-full bg-wine-soft dark:bg-wine-rose/15 text-wine dark:text-wine-rose font-semibold">CGPA 3.82 &middot; MUET Band 3</span>
+                </div>
+                <span class="font-mono text-[11px] text-pearl-muted dark:text-noir-muted">Jitra, Kedah</span>
+              </div>
+              <div>
+                <h3 class="font-display text-2xl font-bold tracking-tight">Diploma in Information Technology (Digital Technology)</h3>
+                <p class="text-xs font-semibold text-pearl-muted dark:text-noir-muted mt-0.5">Politeknik Sultan Abdul Halim Mu'adzam Shah (POLIMAS)</p>
+              </div>
+              <p class="text-sm text-pearl-muted dark:text-noir-muted leading-relaxed">
+                Graduated with <strong>Anugerah Pelajar Cemerlang</strong> and <strong>Dean's Award Every Semester</strong>. Final Year Project: <strong class="font-semibold text-pearl-ink dark:text-noir-ink">SanctGuard — IoT-Based Smart Donation Box Security System</strong>.
+              </p>
+            </div>
+          </div>
+
+          <div class="relative">
+            <span class="absolute -left-[31px] sm:-left-[47px] top-3 w-3.5 h-3.5 rounded-full bg-pearl-muted dark:bg-noir-muted ring-4 ring-pearl-bg dark:ring-noir-bg"></span>
+            <div class="bento-card glass-surface rounded-3xl p-6 sm:p-8 space-y-2">
+              <div class="flex flex-wrap items-center justify-between gap-2">
+                <span class="font-mono text-[10px] uppercase tracking-wider px-3 py-1 rounded-full bg-pearl-soft dark:bg-white/10 font-semibold">Secondary</span>
+                <span class="font-mono text-[11px] text-pearl-muted dark:text-noir-muted">Muar, Johor</span>
+              </div>
+              <h3 class="font-display text-2xl font-bold tracking-tight">Malaysian Certificate of Education (SPM)</h3>
+              <p class="text-xs font-semibold text-pearl-muted dark:text-noir-muted">SMK Tun Perak, Muar, Johor</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- PAGE 4: PROJECTS                                                          -->
+    <!-- ========================================================================= -->
+    <section id="page-projects" class="page-section space-y-12">
+
+      <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-6">
+        <div class="max-w-2xl space-y-3">
+          <p class="font-mono text-[11px] uppercase tracking-[0.22em] text-wine dark:text-wine-rose font-semibold">04 &mdash; Work Produced</p>
+          <h1 class="font-display text-4xl sm:text-5xl font-bold tracking-tight leading-[1.08]">
+            Curated <span class="text-wine dark:text-wine-rose">Technical</span> &amp; UI/UX Projects
+          </h1>
+          <p class="text-sm text-pearl-muted dark:text-noir-muted">
+            Select a discipline below or open any card to inspect the full HCI design breakdown and interactive mockup preview.
+          </p>
+        </div>
+
+        <div id="project-filter-bar" class="relative inline-flex flex-wrap items-center gap-1 p-1.5 rounded-full glass-surface w-fit" role="tablist">
+          <div id="project-filter-pill" class="sliding-pill absolute top-1.5 bottom-1.5 rounded-full bg-wine dark:bg-wine-rose pointer-events-none opacity-0"></div>
+          <button onclick="filterProjects('all')" data-project-filter="all" class="project-filter-btn relative z-10 px-4 py-2 rounded-full text-xs font-semibold transition-colors">All</button>
+          <button onclick="filterProjects('web')" data-project-filter="web" class="project-filter-btn relative z-10 px-4 py-2 rounded-full text-xs font-semibold transition-colors">Web &amp; UI/UX</button>
+          <button onclick="filterProjects('software')" data-project-filter="software" class="project-filter-btn relative z-10 px-4 py-2 rounded-full text-xs font-semibold transition-colors">Software &amp; AI</button>
+          <button onclick="filterProjects('iot-data')" data-project-filter="iot-data" class="project-filter-btn relative z-10 px-4 py-2 rounded-full text-xs font-semibold transition-colors">IoT &amp; Data</button>
+        </div>
+      </div>
+
+      <div id="projects-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- Populated dynamically -->
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- PAGE 5: PROJECT CASE STUDY (DYNAMIC INTERACTIVE VIEW)                     -->
+    <!-- ========================================================================= -->
+    <section id="page-casestudy" class="page-section space-y-9">
+
+      <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
+        <nav aria-label="Breadcrumb" class="inline-flex items-center gap-2 font-mono text-xs glass-surface px-4 py-2.5 rounded-full w-fit">
+          <button onclick="navigateTo('home')" class="text-pearl-muted dark:text-noir-muted hover:text-wine dark:hover:text-wine-rose transition-colors">Home</button>
+          <span class="opacity-40">/</span>
+          <button onclick="navigateTo('projects')" class="text-pearl-muted dark:text-noir-muted hover:text-wine dark:hover:text-wine-rose transition-colors">Projects</button>
+          <span class="opacity-40">/</span>
+          <span id="cs-breadcrumb-title" class="text-wine dark:text-wine-rose font-semibold truncate max-w-[240px] sm:max-w-xs">67 Academic Journal Websites Platform</span>
+        </nav>
+
+        <div id="cs-switcher-pills" class="flex flex-wrap items-center gap-1.5">
+          <!-- Populated dynamically -->
+        </div>
+      </div>
+
+      <div id="casestudy-content" class="space-y-9">
+        <!-- Populated dynamically -->
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- PAGE 6: CREATIVE GALLERY (MODELING, PHOTOGRAPHY & VIDEO REELS)            -->
+    <!-- ========================================================================= -->
+    <section id="page-gallery" class="page-section space-y-12">
+
+      <!-- Interactive Editorial Lookbook Stack Hero Banner -->
+      <div class="bento-card glass-surface rounded-[2.2rem] p-7 sm:p-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+        <div class="lg:col-span-6 space-y-4">
+          <p class="font-mono text-[11px] uppercase tracking-[0.22em] text-wine dark:text-wine-rose font-semibold">06 &mdash; Creative Lookbook</p>
+          <h1 class="font-display text-4xl sm:text-5xl font-bold tracking-tight leading-[1.06]">
+            Modeling, <span class="text-wine dark:text-wine-rose">Canon Stills &amp; Video Reels</span>
+          </h1>
+          <p class="text-sm sm:text-base text-pearl-muted dark:text-noir-muted leading-relaxed">
+            A curated visual archive showcasing baju kurung and modest fashion modeling, editorial stills captured on a Canon PowerShot G7 X Mark III, and promotional restaurant video reels including Handi Roti. Select any look or reel below to open the full-screen viewer.
+          </p>
+          <div class="flex flex-wrap gap-2 pt-1">
+            <span class="font-mono text-[10px] px-3 py-1.5 rounded-full bg-wine-soft dark:bg-wine-rose/15 text-wine dark:text-wine-rose font-semibold">Apparel Modeling</span>
+            <span class="font-mono text-[10px] px-3 py-1.5 rounded-full bg-champagne-soft dark:bg-champagne-dark/15 text-champagne dark:text-champagne-dark font-semibold">Canon G7 X Mark III</span>
+            <span class="font-mono text-[10px] px-3 py-1.5 rounded-full bg-wine-soft dark:bg-wine-rose/15 text-wine dark:text-wine-rose font-semibold">Handi Roti Promo Reels</span>
+          </div>
+        </div>
+
+        <!-- 3 Overlapping Angled Photo Polaroid Cards (Loads photo2, photo1, photo3 directly) -->
+        <div class="lg:col-span-6">
+          <div class="lookbook-stack" data-cursor="VIEW">
+            <!-- Stack Card 1 (Left -> photo2) -->
+            <div onclick="openLightbox('gal-2')" class="stack-card stack-card-1 cursor-pointer bg-white dark:bg-[#1E1A22] border border-pearl-border dark:border-white/15 shadow-xl">
+              <div class="w-full h-full rounded-xl overflow-hidden bg-[#1A1618] relative flex flex-col justify-end p-3 text-white">
+                <img src="images/photo2.jpg" data-base="images/photo2" data-ext-idx="0" onerror="tryNextExt(this)" alt="Look 02" class="absolute inset-0 w-full h-full object-cover object-top" />
+                <div class="absolute inset-0 bg-gradient-to-t from-black/75 via-transparent to-transparent"></div>
+                <span class="relative z-10 font-display font-semibold text-sm">Look 02</span>
+              </div>
+              <p class="font-mono text-[9px] text-center text-pearl-muted dark:text-noir-muted mt-1.5 tracking-widest uppercase">Model Series</p>
+            </div>
+
+            <!-- Stack Card 2 (Center Front -> photo1) -->
+            <div onclick="openLightbox('gal-1')" class="stack-card stack-card-2 cursor-pointer bg-white dark:bg-[#1E1A22] border border-pearl-border dark:border-white/15 shadow-2xl">
+              <div class="w-full h-full rounded-xl overflow-hidden bg-[#261118] relative flex flex-col justify-end p-3 text-white">
+                <img src="images/photo1.jpg" data-base="images/photo1" data-ext-idx="0" onerror="tryNextExt(this)" alt="Look 01" class="absolute inset-0 w-full h-full object-cover object-top" />
+                <div class="absolute inset-0 bg-gradient-to-t from-black/75 via-transparent to-transparent"></div>
+                <span class="relative z-10 font-display font-semibold text-base">Look 01</span>
+              </div>
+              <p class="font-mono text-[9px] text-center text-wine dark:text-wine-rose font-semibold mt-1.5 tracking-widest uppercase">Featured</p>
+            </div>
+
+            <!-- Stack Card 3 (Right -> photo3) -->
+            <div onclick="openLightbox('gal-3')" class="stack-card stack-card-3 cursor-pointer bg-white dark:bg-[#1E1A22] border border-pearl-border dark:border-white/15 shadow-xl">
+              <div class="w-full h-full rounded-xl overflow-hidden bg-[#1D2B1A] relative flex flex-col justify-end p-3 text-white">
+                <img src="images/photo3.jpg" data-base="images/photo3" data-ext-idx="0" onerror="tryNextExt(this)" alt="Look 03" class="absolute inset-0 w-full h-full object-cover object-top" />
+                <div class="absolute inset-0 bg-gradient-to-t from-black/75 via-transparent to-transparent"></div>
+                <span class="relative z-10 font-display font-semibold text-sm">Look 03</span>
+              </div>
+              <p class="font-mono text-[9px] text-center text-pearl-muted dark:text-noir-muted mt-1.5 tracking-widest uppercase">Model Series</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Filter Tabs Bar (With New Video & Reels Tab) -->
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+        <div id="gallery-filter-bar" class="relative inline-flex flex-wrap items-center gap-1 p-1.5 rounded-full glass-surface w-fit" role="tablist">
+          <div id="gallery-filter-pill" class="sliding-pill absolute top-1.5 bottom-1.5 rounded-full bg-wine dark:bg-wine-rose pointer-events-none opacity-0"></div>
+          <button onclick="filterGallery('all')" data-gallery-filter="all" class="gallery-filter-btn relative z-10 px-4 py-2 rounded-full text-xs font-semibold transition-colors">All</button>
+          <button onclick="filterGallery('modeling')" data-gallery-filter="modeling" class="gallery-filter-btn relative z-10 px-4 py-2 rounded-full text-xs font-semibold transition-colors">Apparel Modeling</button>
+          <button onclick="filterGallery('photography')" data-gallery-filter="photography" class="gallery-filter-btn relative z-10 px-4 py-2 rounded-full text-xs font-semibold transition-colors">Canon Photography</button>
+          <button onclick="filterGallery('video')" data-gallery-filter="video" class="gallery-filter-btn relative z-10 px-4 py-2 rounded-full text-xs font-semibold transition-colors">Video &amp; Reels</button>
+        </div>
+      </div>
+
+      <!-- Curated Photo & Video Gallery Grid (3 Large Columns on Desktop) -->
+      <div id="gallery-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-7">
+        <!-- Populated dynamically -->
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- PAGE 7: CONTACT                                                           -->
+    <!-- ========================================================================= -->
+    <section id="page-contact" class="page-section space-y-12">
+
+      <div class="max-w-2xl space-y-3">
+        <p class="font-mono text-[11px] uppercase tracking-[0.22em] text-wine dark:text-wine-rose font-semibold">07 &mdash; Contact</p>
+        <h1 class="font-display text-4xl sm:text-5xl font-bold tracking-tight leading-[1.08]">
+          Let's create something <span class="text-wine dark:text-wine-rose">memorable</span> together.
+        </h1>
+        <p class="text-sm sm:text-base text-pearl-muted dark:text-noir-muted">
+          Available for 2027 ICT internships, web &amp; UI/UX development, boutique apparel modeling, and Canon PowerShot G7 X Mark III photography sessions.
+        </p>
+      </div>
+
+      <div class="reveal grid grid-cols-1 lg:grid-cols-12 gap-7 items-start">
+
+        <!-- Left Column: Direct Contact Cards -->
+        <div class="lg:col-span-5 space-y-4">
+          <div class="bento-card glass-surface rounded-3xl p-5 flex items-center justify-between gap-3">
+            <div class="flex items-center gap-3.5 min-w-0">
+              <div class="w-11 h-11 rounded-2xl bg-wine-soft dark:bg-wine-rose/15 text-wine dark:text-wine-rose flex items-center justify-center shrink-0">
+                <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+              </div>
+              <div class="min-w-0">
+                <p class="font-mono text-[10px] uppercase tracking-wider text-pearl-muted dark:text-noir-muted">Email</p>
+                <p class="text-sm font-semibold truncate">ddaniasofeaaa@email.com</p>
+              </div>
+            </div>
+            <button onclick="copyToClipboard('ddaniasofeaaa@email.com', 'Email copied to clipboard!')" data-cursor="COPY" class="px-3.5 py-2 rounded-full font-mono text-[11px] font-semibold border border-pearl-border dark:border-white/15 hover:border-wine dark:hover:border-wine-rose hover:text-wine dark:hover:text-wine-rose transition-all shrink-0">
+              Copy
+            </button>
+          </div>
+
+          <div class="bento-card glass-surface rounded-3xl p-5 flex items-center justify-between gap-3">
+            <div class="flex items-center gap-3.5 min-w-0">
+              <div class="w-11 h-11 rounded-2xl bg-champagne-soft dark:bg-champagne-dark/15 text-champagne dark:text-champagne-dark flex items-center justify-center shrink-0">
+                <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+              </div>
+              <div class="min-w-0">
+                <p class="font-mono text-[10px] uppercase tracking-wider text-pearl-muted dark:text-noir-muted">Phone</p>
+                <a href="tel:01121291143" class="text-sm font-semibold hover:text-wine dark:hover:text-wine-rose transition-colors">011-21291143</a>
+              </div>
+            </div>
+            <button onclick="copyToClipboard('011-21291143', 'Phone number copied!')" data-cursor="COPY" class="px-3.5 py-2 rounded-full font-mono text-[11px] font-semibold border border-pearl-border dark:border-white/15 hover:border-wine dark:hover:border-wine-rose hover:text-wine dark:hover:text-wine-rose transition-all shrink-0">
+              Copy
+            </button>
+          </div>
+
+          <div class="bento-card glass-surface rounded-3xl p-5 flex items-center gap-3.5">
+            <div class="w-11 h-11 rounded-2xl bg-wine-soft dark:bg-wine-rose/15 text-wine dark:text-wine-rose flex items-center justify-center shrink-0">
+              <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/></svg>
+            </div>
+            <div>
+              <p class="font-mono text-[10px] uppercase tracking-wider text-pearl-muted dark:text-noir-muted">Location</p>
+              <p class="text-sm font-semibold">Melaka / Muar, Johor, Malaysia</p>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-2 gap-3 pt-1">
+            <a href="https://www.linkedin.com/in/dania-sofea-300163334" target="_blank" rel="noopener noreferrer" data-cursor="OPEN" class="bento-card glass-surface rounded-2xl px-4 py-3.5 flex items-center justify-center gap-2 text-xs font-semibold hover:text-wine dark:hover:text-wine-rose transition-all">
+              LinkedIn &nearr;
+            </a>
+            <a href="https://github.com/ddniasofea" target="_blank" rel="noopener noreferrer" data-cursor="OPEN" class="bento-card glass-surface rounded-2xl px-4 py-3.5 flex items-center justify-center gap-2 text-xs font-semibold hover:text-wine dark:hover:text-wine-rose transition-all">
+              GitHub &nearr;
+            </a>
+          </div>
+        </div>
+
+        <!-- Right Column: Validated Interactive Contact Form -->
+        <div class="lg:col-span-7 glass-surface rounded-[2rem] p-6 sm:p-9">
+          <form id="contact-form" novalidate class="space-y-5">
+            <div class="space-y-2.5">
+              <label class="block font-mono text-[11px] uppercase tracking-wider text-pearl-muted dark:text-noir-muted font-semibold">
+                Inquiry Topic <span class="text-wine dark:text-wine-rose">*</span>
+              </label>
+              <div class="flex flex-wrap gap-2" id="inquiry-pills">
+                <button type="button" onclick="selectInquiryPill('Internship Opportunity')" data-inquiry="Internship Opportunity" class="inquiry-pill px-4 py-2 rounded-full text-xs font-semibold border transition-all bg-wine text-white border-wine dark:bg-wine-rose dark:text-noir-bg dark:border-wine-rose">Internship Opportunity</button>
+                <button type="button" onclick="selectInquiryPill('Web / UI Project')" data-inquiry="Web / UI Project" class="inquiry-pill px-4 py-2 rounded-full text-xs font-semibold border transition-all bg-pearl-soft dark:bg-white/[0.04] border-pearl-border dark:border-white/10 text-pearl-muted dark:text-noir-muted hover:border-wine dark:hover:border-wine-rose">Web / UI Project</button>
+                <button type="button" onclick="selectInquiryPill('Apparel Modeling')" data-inquiry="Apparel Modeling" class="inquiry-pill px-4 py-2 rounded-full text-xs font-semibold border transition-all bg-pearl-soft dark:bg-white/[0.04] border-pearl-border dark:border-white/10 text-pearl-muted dark:text-noir-muted hover:border-wine dark:hover:border-wine-rose">Apparel Modeling</button>
+                <button type="button" onclick="selectInquiryPill('Canon Photography')" data-inquiry="Canon Photography" class="inquiry-pill px-4 py-2 rounded-full text-xs font-semibold border transition-all bg-pearl-soft dark:bg-white/[0.04] border-pearl-border dark:border-white/10 text-pearl-muted dark:text-noir-muted hover:border-wine dark:hover:border-wine-rose">Canon Photography</button>
+              </div>
+              <input type="hidden" id="form-inquiry" value="Internship Opportunity" />
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+              <div class="space-y-1.5">
+                <label for="form-name" class="block text-xs font-semibold">Your Name <span class="text-wine dark:text-wine-rose">*</span></label>
+                <input type="text" id="form-name" placeholder="e.g. Recruiter / Brand Name" class="w-full px-4 py-3 rounded-2xl text-sm bg-pearl-bg dark:bg-white/[0.04] border border-pearl-border dark:border-white/10 focus:outline-none focus:ring-2 focus:ring-wine/30 dark:focus:ring-wine-rose/30 focus:border-wine dark:focus:border-wine-rose transition-all" />
+                <p id="error-name" class="hidden text-xs text-rose-600 dark:text-rose-400">Please enter at least 2 characters.</p>
+              </div>
+
+              <div class="space-y-1.5">
+                <div class="flex items-center justify-between">
+                  <label for="form-email" class="block text-xs font-semibold">Email Address <span class="text-wine dark:text-wine-rose">*</span></label>
+                  <span id="email-live-badge" class="hidden font-mono text-[10px] font-semibold"></span>
+                </div>
+                <input type="email" id="form-email" placeholder="name@company.com" class="w-full px-4 py-3 rounded-2xl text-sm bg-pearl-bg dark:bg-white/[0.04] border border-pearl-border dark:border-white/10 focus:outline-none focus:ring-2 focus:ring-wine/30 dark:focus:ring-wine-rose/30 focus:border-wine dark:focus:border-wine-rose transition-all" />
+                <p id="error-email" class="hidden text-xs text-rose-600 dark:text-rose-400">Please enter a valid email address.</p>
+              </div>
+            </div>
+
+            <div class="space-y-1.5">
+              <div class="flex items-center justify-between">
+                <label for="form-message" class="block text-xs font-semibold">Message <span class="text-wine dark:text-wine-rose">*</span></label>
+                <span id="char-counter" class="font-mono text-[11px] text-pearl-muted dark:text-noir-muted">0 / 500</span>
+              </div>
+              <textarea id="form-message" rows="4" maxlength="500" placeholder="Tell me about the internship role, project scope, or photography shoot dates..." class="w-full px-4 py-3 rounded-2xl text-sm bg-pearl-bg dark:bg-white/[0.04] border border-pearl-border dark:border-white/10 focus:outline-none focus:ring-2 focus:ring-wine/30 dark:focus:ring-wine-rose/30 focus:border-wine dark:focus:border-wine-rose transition-all resize-none"></textarea>
+              <p id="error-message" class="hidden text-xs text-rose-600 dark:text-rose-400">Please enter at least 10 characters.</p>
+            </div>
+
+            <button type="submit" data-cursor="OPEN" class="group w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-7 py-3.5 rounded-full bg-wine hover:bg-wine-hover dark:bg-wine-rose dark:hover:bg-wine-roseHover text-white dark:text-noir-bg font-semibold text-xs sm:text-sm shadow-sm transition-all">
+              Send Message
+              <svg class="w-4 h-4 transition-transform group-hover:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></svg>
+            </button>
+          </form>
+
+          <div id="form-success" class="hidden py-10 text-center space-y-4">
+            <div class="w-16 h-16 mx-auto rounded-full bg-wine-soft dark:bg-wine-rose/15 text-wine dark:text-wine-rose flex items-center justify-center">
+              <svg class="w-8 h-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+            </div>
+            <h3 class="font-display text-3xl font-bold tracking-tight">Thank you!</h3>
+            <p class="text-sm text-pearl-muted dark:text-noir-muted max-w-md mx-auto leading-relaxed">
+              Your note, <span id="success-sender-name" class="font-semibold text-pearl-ink dark:text-noir-ink"></span>, regarding <span id="success-inquiry-type" class="font-semibold text-wine dark:text-wine-rose"></span> has been received. I'll respond shortly.
+            </p>
+            <button onclick="resetContactForm()" class="px-5 py-2.5 rounded-full text-xs font-semibold border border-pearl-border dark:border-white/15 hover:border-wine dark:hover:border-wine-rose transition-colors">
+              Send Another Note
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ==================== MINIMAL EDITORIAL FOOTER ==================== -->
+  <footer class="relative z-10 border-t border-pearl-border dark:border-white/10 bg-white/60 dark:bg-[#0F0D12]/70 backdrop-blur-md mt-auto">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+      <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+        <div class="space-y-1">
+          <p class="font-display text-2xl font-bold tracking-tight">
+            Nur Dania Sofea<span class="text-wine dark:text-wine-rose">.</span>
+          </p>
+          <p class="text-xs text-pearl-muted dark:text-noir-muted">
+            FTMK UTeM &middot; Junior Web Developer &middot; UI/UX Designer &middot; Model, Photographer &amp; Content Creator
+          </p>
+        </div>
+
+        <div class="flex flex-wrap items-center gap-x-5 gap-y-2 text-xs font-medium text-pearl-muted dark:text-noir-muted">
+          <button onclick="navigateTo('home')" class="hover:text-wine dark:hover:text-wine-rose transition-colors">Home</button>
+          <button onclick="navigateTo('about')" class="hover:text-wine dark:hover:text-wine-rose transition-colors">About</button>
+          <button onclick="navigateTo('experience')" class="hover:text-wine dark:hover:text-wine-rose transition-colors">Experience</button>
+          <button onclick="navigateTo('projects')" class="hover:text-wine dark:hover:text-wine-rose transition-colors">Projects</button>
+          <button onclick="openCaseStudy(currentCaseStudyId)" class="hover:text-wine dark:hover:text-wine-rose transition-colors">Case Study</button>
+          <button onclick="navigateTo('gallery')" class="hover:text-wine dark:hover:text-wine-rose transition-colors">Gallery</button>
+          <button onclick="navigateTo('contact')" class="hover:text-wine dark:hover:text-wine-rose transition-colors">Contact</button>
+        </div>
+      </div>
+
+      <div class="mt-7 pt-6 border-t border-pearl-border dark:border-white/10 flex flex-col sm:flex-row items-center justify-between gap-2 font-mono text-[10px] uppercase tracking-wider text-pearl-muted dark:text-noir-muted">
+        <p>&copy; 2026 Nur Dania Sofea binti Amdan</p>
+        <p>BITM 2313 Human-Computer Interaction &middot; Digital Portfolio</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==================== FLOATING BACK-TO-TOP BUTTON ==================== -->
+  <button id="back-to-top" onclick="window.scrollTo({ top: 0, behavior: 'smooth' })" class="fixed bottom-6 left-6 z-40 p-3 rounded-full glass-surface text-pearl-ink dark:text-noir-ink hover:border-wine dark:hover:border-wine-rose hover:text-wine dark:hover:text-wine-rose shadow-lg transition-all" aria-label="Back to Top" title="Back to Top">
+    <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m18 15-6-6-6 6"/></svg>
+  </button>
+
+  <!-- ==================== MODAL 1: A4 PRINTABLE RESUME PREVIEW ==================== -->
+  <div id="resume-modal" class="modal-overlay fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-md" onclick="closeResumeModal(event)">
+    <div class="modal-panel w-full max-w-3xl max-h-[90vh] overflow-y-auto rounded-[2rem] bg-white dark:bg-[#141218] border border-pearl-border dark:border-white/15 shadow-2xl p-6 sm:p-10 space-y-6" onclick="event.stopPropagation()">
+      <div class="flex items-start justify-between gap-4 border-b border-pearl-border dark:border-white/10 pb-5">
+        <div>
+          <p class="font-mono text-[10px] uppercase tracking-[0.22em] text-wine dark:text-wine-rose font-semibold">Curriculum Vitae &middot; 2026</p>
+          <h2 class="font-display text-3xl sm:text-4xl font-bold tracking-tight mt-0.5">Nur Dania Sofea binti Amdan</h2>
+          <p class="text-xs text-pearl-muted dark:text-noir-muted mt-1.5 leading-relaxed">
+            Melaka / Muar, Johor, Malaysia &bull; 011-21291143 &bull; ddaniasofeaaa@email.com<br />
+            linkedin.com/in/dania-sofea-300163334 &bull; github.com/ddniasofea
+          </p>
+        </div>
+        <button onclick="closeResumeModal()" class="no-print p-2.5 rounded-full hover:bg-pearl-soft dark:hover:bg-white/10 transition-colors" aria-label="Close Resume">
+          <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+        </button>
+      </div>
+
+      <div class="space-y-1.5 text-sm">
+        <h3 class="font-mono text-[11px] uppercase tracking-widest text-wine dark:text-wine-rose font-semibold">Profile Summary</h3>
+        <p class="text-pearl-muted dark:text-noir-muted leading-relaxed">
+          Year 3 ICT undergraduate at FTMK, Universiti Teknikal Malaysia Melaka (UTeM) with 2 Semesters Dean's List distinction and POLIMAS Diploma in IT graduate (CGPA 3.82, Anugerah Pelajar Cemerlang &amp; Dean's Award Every Semester). Experienced Junior Web Developer managing 67 academic journal websites at Zibeline International Publishing, former Web Developer Intern at Rekasawang Sdn. Bhd., and freelance clothing model, content creator (restaurant promotional videos including Handi Roti), &amp; Canon PowerShot G7 X Mark III photographer.
+        </p>
+      </div>
+
+      <div class="space-y-3 text-sm">
+        <h3 class="font-mono text-[11px] uppercase tracking-widest text-wine dark:text-wine-rose font-semibold">Work &amp; Freelance Experience</h3>
+        <div class="space-y-3">
+          <div class="flex flex-col sm:flex-row sm:justify-between gap-1">
+            <div>
+              <p class="font-semibold">Junior Web Developer (Part-time, Remote) — Zibeline International Publishing</p>
+              <p class="text-xs text-pearl-muted dark:text-noir-muted">Cyberjaya, Selangor &bull; Publishing web updates, structured academic content formatting &amp; digital consistency remotely.</p>
+            </div>
+            <span class="font-mono text-[11px] text-pearl-muted dark:text-noir-muted shrink-0">Mar 2026 – Oct 2026</span>
+          </div>
+          <div class="flex flex-col sm:flex-row sm:justify-between gap-1">
+            <div>
+              <p class="font-semibold">Junior Web Developer (Full-time, On-site) — Zibeline International Publishing</p>
+              <p class="text-xs text-pearl-muted dark:text-noir-muted">Cyberjaya, Selangor &bull; Managed &amp; maintained <strong>67 academic journal websites</strong>, WordPress customization, formatting &amp; optimization.</p>
+            </div>
+            <span class="font-mono text-[11px] text-pearl-muted dark:text-noir-muted shrink-0">Jan 2025 – Sep 2025</span>
+          </div>
+          <div class="flex flex-col sm:flex-row sm:justify-between gap-1">
+            <div>
+              <p class="font-semibold">Clothing Model, Photographer &amp; Content Creator (Freelance, Self-employed)</p>
+              <p class="text-xs text-pearl-muted dark:text-noir-muted">On-site &bull; Fashion apparel modeling (baju kurung, modest &amp; contemporary wear), Canon PowerShot G7 X Mark III photography, and promotional restaurant video reels (including Handi Roti).</p>
+            </div>
+            <span class="font-mono text-[11px] text-pearl-muted dark:text-noir-muted shrink-0">Jan 2025 – Present</span>
+          </div>
+          <div class="flex flex-col sm:flex-row sm:justify-between gap-1">
+            <div>
+              <p class="font-semibold">Web Developer Intern (On-site) — Rekasawang Sdn. Bhd.</p>
+              <p class="text-xs text-pearl-muted dark:text-noir-muted">Bandar Baru Bangi, Selangor &bull; Built responsive sites (Klinik Akhi, PACU, UNIPSAS APEL, Pemikir, JejakVacation), WooCommerce weight shipping &amp; toyyibPay/EasyParcel integration (NuuhaBeauty, SuperKidzz), Laravel &amp; MySQL app (LaraGigs), wireframes, UAT, QC &amp; client speed/SEO reports.</p>
+            </div>
+            <span class="font-mono text-[11px] text-pearl-muted dark:text-noir-muted shrink-0">Jul 2024 – Nov 2024</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="space-y-2.5 text-sm">
+        <h3 class="font-mono text-[11px] uppercase tracking-widest text-wine dark:text-wine-rose font-semibold">Education</h3>
+        <div class="space-y-2">
+          <div class="flex flex-col sm:flex-row sm:justify-between gap-1">
+            <div>
+              <p class="font-semibold">Bachelor of Information &amp; Communication Technology — FTMK, UTeM</p>
+              <p class="text-xs text-pearl-muted dark:text-noir-muted">Year 3 &bull; <strong>Dean's List (2 Semesters)</strong> &bull; HCI, Distributed Systems, Databases, AI, BI</p>
+            </div>
+            <span class="font-mono text-[11px] text-pearl-muted dark:text-noir-muted shrink-0">2025 – Present</span>
+          </div>
+          <div class="flex flex-col sm:flex-row sm:justify-between gap-1">
+            <div>
+              <p class="font-semibold">Diploma in Information Technology (Digital Technology) — POLIMAS</p>
+              <p class="text-xs text-pearl-muted dark:text-noir-muted">CGPA: 3.82 | MUET Band 3 &bull; Anugerah Pelajar Cemerlang &amp; Dean's Award Every Semester &bull; FYP: SanctGuard IoT</p>
+            </div>
+            <span class="font-mono text-[11px] text-pearl-muted dark:text-noir-muted shrink-0">Feb 2022 – Nov 2024</span>
+          </div>
+          <div>
+            <p class="font-semibold">Malaysian Certificate of Education (SPM) — SMK Tun Perak, Muar, Johor</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-xs pt-3 border-t border-pearl-border dark:border-white/10">
+        <div class="space-y-1.5">
+          <h3 class="font-mono uppercase tracking-widest text-wine dark:text-wine-rose font-semibold">Awards &amp; Certifications</h3>
+          <ul class="space-y-1 text-pearl-muted dark:text-noir-muted list-disc pl-4">
+            <li>UTeM Dean's List (2 Semesters)</li>
+            <li>Academic Excellence Award (Anugerah Pelajar Cemerlang), POLIMAS</li>
+            <li>Dean's Award (Anugerah Ketua Jabatan — Every Semester), POLIMAS</li>
+            <li>iCompEx 2023 Social Media Committee &amp; PEPCI 2023 Pitching Participant</li>
+          </ul>
+        </div>
+        <div class="space-y-1.5">
+          <h3 class="font-mono uppercase tracking-widest text-wine dark:text-wine-rose font-semibold">Core Skills</h3>
+          <p class="text-pearl-muted dark:text-noir-muted leading-relaxed">
+            <strong>Web &amp; UI/UX:</strong> WordPress, Elementor, Figma, HTML/CSS, Laravel, WooCommerce.<br />
+            <strong>Software &amp; Data:</strong> Java, C++, Python, PHP, MySQL, Power BI, ESP32 IoT.<br />
+            <strong>Creative:</strong> Apparel Modeling, Canon Photography, Content Creation, Promo Video Reels, Editorial OOTD, Visual Styling, Canva.
+          </p>
+        </div>
+      </div>
+
+      <div class="no-print flex flex-wrap items-center justify-end gap-3 pt-4 border-t border-pearl-border dark:border-white/10">
+        <button onclick="closeResumeModal()" class="px-5 py-2.5 rounded-full text-xs font-semibold border border-pearl-border dark:border-white/15 hover:border-wine dark:hover:border-wine-rose transition-colors">Close</button>
+        <button onclick="window.print(); showToast('Opening Print / Save as PDF dialog...');" class="px-5 py-2.5 rounded-full text-xs font-semibold bg-wine dark:bg-wine-rose text-white dark:text-noir-bg hover:opacity-90 transition-all">Print / Save as PDF</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== MODAL 2: FULL-SCREEN PHOTO & VIDEO LIGHTBOX ==================== -->
+  <div id="lightbox-modal" class="modal-overlay fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/85 backdrop-blur-md" onclick="closeLightbox(event)">
+    <div class="modal-panel relative w-full max-w-3xl rounded-[2rem] overflow-hidden bg-[#141218] border border-white/15 shadow-2xl" onclick="event.stopPropagation()">
+      <div class="flex items-center justify-between px-6 py-4 border-b border-white/10 text-white">
+        <div>
+          <p id="lb-category" class="font-mono text-[10px] uppercase tracking-[0.2em] text-wine-rose font-semibold"></p>
+          <h3 id="lb-title" class="font-display text-xl sm:text-2xl font-bold tracking-tight"></h3>
+        </div>
+        <button onclick="closeLightbox()" class="p-2 rounded-full bg-white/10 hover:bg-white/20 text-white transition-colors" aria-label="Close Lightbox">
+          <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+        </button>
+      </div>
+
+      <div class="relative aspect-[16/10] bg-black flex items-center justify-center overflow-hidden">
+        <button onclick="stepLightbox(-1)" class="absolute left-3 z-20 p-2.5 rounded-full bg-black/55 hover:bg-black/85 text-white backdrop-blur-sm transition-all" aria-label="Previous Item">
+          <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m15 18-6-6 6-6"/></svg>
+        </button>
+        <div id="lb-visual" class="w-full h-full flex items-center justify-center"></div>
+        <button onclick="stepLightbox(1)" class="absolute right-3 z-20 p-2.5 rounded-full bg-black/55 hover:bg-black/85 text-white backdrop-blur-sm transition-all" aria-label="Next Item">
+          <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 18 6-6-6-6"/></svg>
+        </button>
+      </div>
+
+      <div class="p-6 text-white space-y-3">
+        <p id="lb-caption" class="text-sm text-white/75 leading-relaxed"></p>
+        <div class="flex flex-wrap items-center justify-between gap-2 pt-2 border-t border-white/10 text-xs">
+          <span id="lb-role" class="font-mono text-[11px] px-3 py-1 rounded-full bg-wine-rose/15 text-wine-rose font-semibold"></span>
+          <span id="lb-gear" class="font-mono text-[11px] text-champagne-dark"></span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== TOAST FEEDBACK NOTIFICATION ==================== -->
+  <div id="toast-box" class="fixed bottom-6 right-6 z-50 max-w-xs bg-pearl-ink dark:bg-noir-ink text-pearl-bg dark:text-noir-bg px-4 py-3 rounded-2xl shadow-2xl flex items-center gap-2.5 text-xs font-semibold">
+    <svg class="w-4 h-4 text-wine-rose dark:text-wine shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+    <span id="toast-msg">Done!</span>
+  </div>
+
+  <!-- ==================== APPLICATION LOGIC ==================== -->
+  <script src="script.js"></script>
+</body>
+</html>
